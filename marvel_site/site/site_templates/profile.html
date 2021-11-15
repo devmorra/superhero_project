@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class='hero-section'>
+    <h3 class="header-text">Welcome to Hero Place! {{ current_user.first_name }} </h3>
+</header>
+<div class="container">
+    <h3>Here are your profile details</h3>
+
+    <ul class="list-group">
+        <li class="list-group-item">Email: {{ current_user.email }}</li>
+        <li class="list-group-item">Token: {{ current_user.token }}</li>
+    </ul>
+    {% if heroes != [] %}
+    <h3>Here are your heroes:</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th># of Appearances</th>
+            <th>Power</th>
+            <th>Date Obtained</th>
+        </tr>
+        {% for hero in heroes %}
+        <tr>
+            <td>{{hero['name']}}</td>
+            <td>{{hero['description']}}</td>
+            <td>{{hero['comics_appeared_in']}}</td>
+            <td>{{hero['super_power']}}</td>
+            <td>{{hero['date_created']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3>You have no heroes 😢</h3>
+    {% endif %}
+
+    
+
+</div>
+{% endblock content %}
