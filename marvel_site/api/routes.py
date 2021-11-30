@@ -7,7 +7,6 @@ api = Blueprint('api', __name__, url_prefix='/api' )
 
 @api.route('/heroes', methods=['POST'])
 @token_required
-@cross_origin
 def createHero(current_user_token):
     name = request.json['name']
     description = request.json['description']
@@ -25,7 +24,6 @@ def createHero(current_user_token):
 
 # RETRIEVE ALL heroes ENDPOINT
 @api.route('/heroes', methods = ['GET'])
-@cross_origin
 @token_required
 def getheroes(current_user_token):
     owner = current_user_token.token
@@ -35,7 +33,6 @@ def getheroes(current_user_token):
 
 # RETRIEVE ONE hero ENDPOINT
 @api.route('/heroes/<id>', methods = ['GET'])
-@cross_origin
 @token_required
 def gethero(current_user_token, id):
     owner = current_user_token.token
@@ -51,7 +48,6 @@ def gethero(current_user_token, id):
 
 # update hero endpoint
 @api.route('/heroes/<id>', methods=['POST', 'PUT'])
-@cross_origin
 @token_required
 def updatehero(current_user_token, id):
     hero = Hero.query.get(id)
@@ -65,7 +61,6 @@ def updatehero(current_user_token, id):
 
 # DELETE hero ENDPOINT
 @api.route('/heroes/<id>', methods = ['DELETE'])
-@cross_origin
 @token_required
 def delete_hero(current_user_token, id):
     owner = current_user_token.token
