@@ -26,6 +26,6 @@ ma.init_app(app)
 
 migrate = Migrate(app, root_db)
 
-CORS(app)
+cors = CORS(app)
 
 app.json_encoder = JSONEncoder
